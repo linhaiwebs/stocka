@@ -88,6 +88,52 @@ fi
 
 print_success "Environment configuration found"
 
+# Load and validate COMPOSE_PROJECT_NAME
+print_status "Validating deployment configuration..."
+
+COMPOSE_PROJECT_NAME=$(grep -E "^COMPOSE_PROJECT_NAME=" .env.docker | cut -d '=' -f2 | tr -d ' "' || echo "")
+
+if [ -z "$COMPOSE_PROJECT_NAME" ]; then
+    print_warning "COMPOSE_PROJECT_NAME not set in .env.docker"
+    COMPOSE_PROJECT_NAME="aistock-us-page"
+    echo "COMPOSE_PROJECT_NAME=$COMPOSE_PROJECT_NAME" >> .env.docker
+    print_status "Using default project name: $COMPOSE_PROJECT_NAME"
+else
+    print_success "Project name: $COMPOSE_PROJECT_NAME"
+fi
+
+export COMPOSE_PROJECT_NAME
+
+# Check and generate JWT_SECRET if needed
+JWT_SECRET=$(grep -E "^JWT_SECRET=" .env.docker | cut -d '=' -f2 | tr -d ' "' || echo "")
+
+if [ -z "$JWT_SECRET" ] || [ ${#JWT_SECRET} -lt 32 ]; then
+    print_status "Generating secure JWT_SECRET..."
+
+    if command_exists openssl; then
+        NEW_JWT_SECRET=$(openssl rand -base64 48 | tr -d '\n')
+    else
+        NEW_JWT_SECRET=$(head /dev/urandom | tr -dc A-Za-z0-9 | head -c 48)
+    fi
+
+    if [ -z "$JWT_SECRET" ]; then
+        echo "JWT_SECRET=$NEW_JWT_SECRET" >> .env.docker
+    else
+        if command_exists sed; then
+            sed -i.bak "s|^JWT_SECRET=.*|JWT_SECRET=$NEW_JWT_SECRET|" .env.docker
+            rm -f .env.docker.bak
+        else
+            grep -v "^JWT_SECRET=" .env.docker > .env.docker.tmp
+            echo "JWT_SECRET=$NEW_JWT_SECRET" >> .env.docker.tmp
+            mv .env.docker.tmp .env.docker
+        fi
+    fi
+
+    print_success "JWT_SECRET generated and saved to .env.docker"
+else
+    print_success "Using existing JWT_SECRET from .env.docker"
+fi
+
 # Stop existing containers
 print_status "Stopping existing containers (if any)..."
 $DOCKER_COMPOSE_CMD --env-file .env.docker down 2>/dev/null || true
@@ -174,7 +220,11 @@ print_status "Performing health check..."
 BACKEND_PORT=$(grep -E "^BACKEND_PORT=" .env.docker | cut -d '=' -f2 | tr -d ' ' || echo "3001")
 BACKEND_PORT=${BACKEND_PORT:-3001}
 
-BACKEND_HEALTH=$(docker exec landing-page-backend wget -qO- http://localhost:${BACKEND_PORT}/health 2>/dev/null || echo "failed")
+# Use dynamic container names based on COMPOSE_PROJECT_NAME
+BACKEND_CONTAINER="${COMPOSE_PROJECT_NAME}-backend"
+FRONTEND_CONTAINER="${COMPOSE_PROJECT_NAME}-frontend"
+
+BACKEND_HEALTH=$(docker exec "$BACKEND_CONTAINER" wget -qO- http://localhost:${BACKEND_PORT}/health 2>/dev/null || echo "failed")
 
 if [ "$BACKEND_HEALTH" != "failed" ]; then
     print_success "Backend is healthy"
@@ -182,7 +232,7 @@ else
     print_warning "Backend health check failed. Check logs with: $DOCKER_COMPOSE_CMD logs backend"
 fi
 
-FRONTEND_HEALTH=$(docker exec landing-page-frontend wget -qO- http://localhost/ 2>/dev/null || echo "failed")
+FRONTEND_HEALTH=$(docker exec "$FRONTEND_CONTAINER" wget -qO- http://localhost/ 2>/dev/null || echo "failed")
 
 if [ "$FRONTEND_HEALTH" != "failed" ]; then
     print_success "Frontend is healthy"
@@ -194,7 +244,7 @@ fi
 print_status "Verifying React template setup..."
 sleep 2
 
-REACT_CHECK=$(docker exec landing-page-backend sh -c "node -e \"
+REACT_CHECK=$(docker exec "$BACKEND_CONTAINER" sh -c "node -e \"
 const db = require('better-sqlite3')('/app/data/landing_pages.db');
 const templates = db.prepare('SELECT COUNT(*) as count FROM templates WHERE template_type = \\'react\\'').get();
 const withCode = db.prepare('SELECT COUNT(*) as count FROM templates WHERE template_type = \\'react\\' AND component_code IS NOT NULL').get();
@@ -210,7 +260,7 @@ if [ "$REACT_TOTAL" -gt 0 ]; then
     else
         print_warning "React templates: $REACT_WITH_CODE/$REACT_TOTAL have component code"
         echo "  Some React templates may not be fully functional"
-        echo "  Check backend logs: docker logs landing-page-backend"
+        echo "  Check backend logs: docker logs $BACKEND_CONTAINER"
     fi
 else
     print_status "No React templates found (HTML templates only)"
@@ -220,7 +270,7 @@ fi
 print_status "Verifying template categories..."
 sleep 1
 
-CATEGORY_CHECK=$(docker exec landing-page-backend sh -c "node -e \"
+CATEGORY_CHECK=$(docker exec "$BACKEND_CONTAINER" sh -c "node -e \"
 const db = require('better-sqlite3')('/app/data/landing_pages.db');
 const inputForm = db.prepare('SELECT COUNT(*) as count FROM templates WHERE template_category = \\'input-form\\'').get();
 const standard = db.prepare('SELECT COUNT(*) as count FROM templates WHERE template_category = \\'standard\\'').get();

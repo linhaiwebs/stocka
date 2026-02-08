@@ -5,7 +5,7 @@ services:
     build:
       context: ./backend
       dockerfile: Dockerfile
-    container_name: aistock-us-page-backend
+    container_name: ${COMPOSE_PROJECT_NAME:-aistock-us-page}-backend
     restart: unless-stopped
     environment:
       - NODE_ENV=${NODE_ENV:-production}
@@ -31,11 +31,11 @@ services:
       - FORCE_RESEED_COMPONENT_CODE=${FORCE_RESEED_COMPONENT_CODE:-false}
       - TEMPLATES_DIR=${TEMPLATES_DIR:-/app/templates}
     volumes:
-      - backend-data:/app/data
-      - backend-backups:/app/backups
+      - ${COMPOSE_PROJECT_NAME:-aistock-us-page}-backend-data:/app/data
+      - ${COMPOSE_PROJECT_NAME:-aistock-us-page}-backend-backups:/app/backups
       - ./templates:/app/templates:ro
     networks:
-      - app-network
+      - ${COMPOSE_PROJECT_NAME:-aistock-us-page}-network
     healthcheck:
       test: ["CMD", "sh", "-c", "node -e \"require('http').get('http://localhost:${PORT:-3001}/health', (r) => {process.exit(r.statusCode === 200 ? 0 : 1)})\""]
       interval: 30s
@@ -57,7 +57,7 @@ services:
         - VITE_ENABLE_CONVERSION_TRACKING=${VITE_ENABLE_CONVERSION_TRACKING:-true}
         - VITE_SUPABASE_URL=${VITE_SUPABASE_URL}
         - VITE_SUPABASE_ANON_KEY=${VITE_SUPABASE_ANON_KEY}
-    container_name: aistock-us-page-frontend
+    container_name: ${COMPOSE_PROJECT_NAME:-aistock-us-page}-frontend
     restart: unless-stopped
     environment:
       - BACKEND_PORT=${BACKEND_PORT:-3001}
@@ -66,7 +66,7 @@ services:
     depends_on:
       - backend
     networks:
-      - app-network
+      - ${COMPOSE_PROJECT_NAME:-aistock-us-page}-network
     healthcheck:
       test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost/"]
       interval: 30s
@@ -75,11 +75,11 @@ services:
       start_period: 5s
 
 networks:
-  app-network:
+  ${COMPOSE_PROJECT_NAME:-aistock-us-page}-network:
     driver: bridge
 
 volumes:
-  backend-data:
+  ${COMPOSE_PROJECT_NAME:-aistock-us-page}-backend-data:
     driver: local
-  backend-backups:
+  ${COMPOSE_PROJECT_NAME:-aistock-us-page}-backend-backups:
     driver: local
