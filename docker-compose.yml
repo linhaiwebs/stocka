@@ -31,11 +31,11 @@ services:
       - FORCE_RESEED_COMPONENT_CODE=${FORCE_RESEED_COMPONENT_CODE:-false}
       - TEMPLATES_DIR=${TEMPLATES_DIR:-/app/templates}
     volumes:
-      - ${COMPOSE_PROJECT_NAME:-aistock-us-page}-backend-data:/app/data
-      - ${COMPOSE_PROJECT_NAME:-aistock-us-page}-backend-backups:/app/backups
+      - backend-data:/app/data
+      - backend-backups:/app/backups
       - ./templates:/app/templates:ro
     networks:
-      - ${COMPOSE_PROJECT_NAME:-aistock-us-page}-network
+      - app-network
     healthcheck:
       test: ["CMD", "sh", "-c", "node -e \"require('http').get('http://localhost:${PORT:-3001}/health', (r) => {process.exit(r.statusCode === 200 ? 0 : 1)})\""]
       interval: 30s
@@ -66,7 +66,7 @@ services:
     depends_on:
       - backend
     networks:
-      - ${COMPOSE_PROJECT_NAME:-aistock-us-page}-network
+      - app-network
     healthcheck:
       test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost/"]
       interval: 30s
@@ -75,11 +75,14 @@ services:
       start_period: 5s
 
 networks:
-  ${COMPOSE_PROJECT_NAME:-aistock-us-page}-network:
+  app-network:
+    name: ${COMPOSE_PROJECT_NAME:-aistock-us-page}-network
     driver: bridge
 
 volumes:
-  ${COMPOSE_PROJECT_NAME:-aistock-us-page}-backend-data:
+  backend-data:
+    name: ${COMPOSE_PROJECT_NAME:-aistock-us-page}-backend-data
     driver: local
-  ${COMPOSE_PROJECT_NAME:-aistock-us-page}-backend-backups:
+  backend-backups:
+    name: ${COMPOSE_PROJECT_NAME:-aistock-us-page}-backend-backups
     driver: local
