@@ -1,0 +1,13 @@
+{
+  "name": "AI Stock Pro Enterprise",
+  "slug": "ai-stock-pro-enterprise",
+  "componentName": "AIStockProEnterprise",
+  "description": "Professional enterprise-grade stock analysis platform for educational purposes. Features comprehensive compliance disclosures and risk warnings for Google Ads policy compliance.",
+  "version": "1.0.0",
+  "category": "Finance",
+  "templateCategory": "input-form",
+  "tags": ["stock", "ai", "finance", "enterprise", "professional", "compliance", "education"],
+  "author": "Template System",
+  "thumbnail": "",
+  "previewImages": []
+}

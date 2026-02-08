@@ -1,0 +1,13 @@
+{
+  "name": "AI Stock Prediction USA",
+  "slug": "ai-stock-usa2",
+  "componentName": "AIStockUSA2",
+  "description": "Modern stock prediction landing page with purple gradient design, AI-powered analysis, loading animation, and conversion tracking.",
+  "version": "1.0.0",
+  "category": "Finance",
+  "templateCategory": "input-form",
+  "tags": ["stock", "ai", "finance", "prediction", "conversion", "usa"],
+  "author": "Template System",
+  "thumbnail": "",
+  "previewImages": []
+}

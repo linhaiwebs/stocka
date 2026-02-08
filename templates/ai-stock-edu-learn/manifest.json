@@ -1,0 +1,13 @@
+{
+  "name": "AI Stock Educational Learning",
+  "slug": "ai-stock-edu-learn",
+  "componentName": "AIStockEduLearn",
+  "description": "Educational learning platform for stock analysis concepts. Features comprehensive educational disclaimers and learning-focused content for Google Ads policy compliance.",
+  "version": "1.0.0",
+  "category": "Finance",
+  "templateCategory": "input-form",
+  "tags": ["stock", "ai", "finance", "education", "learning", "compliance", "student"],
+  "author": "Template System",
+  "thumbnail": "",
+  "previewImages": []
+}

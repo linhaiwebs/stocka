@@ -1,0 +1,13 @@
+{
+  "name": "AI Stock Oracle",
+  "slug": "ai-stock-oracle",
+  "componentName": "AIStockOracle",
+  "description": "Advanced stock analysis platform landing page with real-time market intelligence and predictive analytics features, designed for professional traders and investors",
+  "version": "1.0.0",
+  "category": "Finance",
+  "templateCategory": "input-form",
+  "tags": ["stock", "trading", "analysis", "market-intelligence", "predictive-analytics", "real-time", "finance"],
+  "author": "Landing Page Builder",
+  "thumbnail": "",
+  "previewImages": []
+}

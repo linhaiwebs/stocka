@@ -1,0 +1,13 @@
+{
+  "name": "Signm Intelligent Stock Analysis",
+  "slug": "signm-stock-analysis",
+  "componentName": "SignmStockAnalysis",
+  "description": "Advanced seven-dimensional stock diagnosis platform providing technical analysis, financial assessment, and comprehensive investment insights",
+  "version": "1.0.0",
+  "category": "Finance",
+  "templateCategory": "input-form",
+  "tags": ["stock", "analysis", "finance", "investment", "trading", "seven-dimensional"],
+  "author": "Landing Page Builder",
+  "thumbnail": "",
+  "previewImages": []
+}

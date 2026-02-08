@@ -1,0 +1,13 @@
+{
+  "name": "AI Stock Intelligence",
+  "slug": "ai-stock-intelligence",
+  "componentName": "AIStockIntelligence",
+  "description": "Advanced market intelligence and predictive analysis platform powered by AI-driven real-time stock analysis with deep teal/cyan gradient aesthetics",
+  "version": "1.0.0",
+  "category": "stock-analysis",
+  "templateCategory": "input-form",
+  "tags": ["stock", "ai", "intelligence", "market-analysis", "predictive", "real-time", "conversion"],
+  "author": "Template System",
+  "thumbnail": "",
+  "previewImages": []
+}

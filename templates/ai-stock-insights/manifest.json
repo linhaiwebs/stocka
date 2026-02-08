@@ -1,0 +1,13 @@
+{
+  "name": "AI Stock Insights",
+  "slug": "ai-stock-insights",
+  "componentName": "AIStockInsights",
+  "description": "AI-powered stock analysis landing page with WhatsApp integration. Features stock ticker input, scanning animation, and conversion tracking.",
+  "version": "1.0.0",
+  "category": "Finance",
+  "templateCategory": "input-form",
+  "tags": ["stock", "ai", "finance", "whatsapp", "conversion"],
+  "author": "Template System",
+  "thumbnail": "",
+  "previewImages": []
+}

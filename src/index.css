@@ -1,0 +1,79 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  @media (max-width: 768px) {
+    .template-container section,
+    .template-container .section {
+      padding-top: 2rem !important;
+      padding-bottom: 2rem !important;
+    }
+
+    .template-container h1,
+    .template-container .heading-1 {
+      margin-bottom: 1rem !important;
+      font-size: 1.875rem !important;
+      line-height: 2.25rem !important;
+    }
+
+    .template-container h2,
+    .template-container .heading-2 {
+      margin-bottom: 0.75rem !important;
+      font-size: 1.5rem !important;
+      line-height: 2rem !important;
+    }
+
+    .template-container h3,
+    .template-container .heading-3 {
+      margin-bottom: 0.5rem !important;
+      font-size: 1.25rem !important;
+      line-height: 1.75rem !important;
+    }
+
+    .template-container p {
+      margin-bottom: 0.75rem !important;
+    }
+
+    .template-container .button,
+    .template-container button:not(.admin-button),
+    .template-container a.btn {
+      padding: 0.625rem 1.25rem !important;
+      margin: 0.5rem 0.25rem !important;
+    }
+
+    .template-container .hero,
+    .template-container .hero-section {
+      min-height: 60vh !important;
+      padding-top: 2rem !important;
+      padding-bottom: 2rem !important;
+    }
+
+    .template-container .container {
+      padding-left: 1rem !important;
+      padding-right: 1rem !important;
+    }
+
+    .template-container .card,
+    .template-container .feature-card {
+      margin-bottom: 1rem !important;
+      padding: 1rem !important;
+    }
+
+    .template-container .grid,
+    .template-container .features-grid {
+      gap: 1rem !important;
+    }
+
+    .template-container .space-y-8 > * + *,
+    .template-container .space-y-12 > * + *,
+    .template-container .space-y-16 > * + * {
+      margin-top: 1.5rem !important;
+    }
+
+    .template-container .space-y-4 > * + *,
+    .template-container .space-y-6 > * + * {
+      margin-top: 1rem !important;
+    }
+  }
+}

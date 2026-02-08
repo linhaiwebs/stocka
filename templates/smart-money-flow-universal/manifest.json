@@ -1,0 +1,27 @@
+{
+  "id": "smart-money-flow-universal",
+  "name": "Smart Money Flow - Universal",
+  "slug": "smart-money-flow-universal",
+  "componentName": "SmartMoneyFlowUniversal",
+  "description": "Educational landing page about smart money flow and institutional trading patterns. No input fields - direct conversion flow.",
+  "category": "通版",
+  "templateCategory": "standard",
+  "primaryColor": "#8b5cf6",
+  "features": [
+    "Dark theme with gradient backgrounds",
+    "Animated market ticker",
+    "Market sectors display",
+    "Educational content sections",
+    "6 survival rules framework",
+    "Direct conversion buttons",
+    "Extensive compliance disclaimers",
+    "Mobile responsive design"
+  ],
+  "conversionType": "direct",
+  "hasInputFields": false,
+  "targetAudience": "retail_traders",
+  "language": "en",
+  "seoTitle": "Smart Money Flow Tracker - Follow Institutional Trading",
+  "seoDescription": "Learn to track smart money flows and institutional trading patterns. Educational platform for understanding market movements.",
+  "keywords": ["smart money", "institutional trading", "market flow", "trading education", "investment education"]
+}

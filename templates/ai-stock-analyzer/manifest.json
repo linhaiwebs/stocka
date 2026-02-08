@@ -1,0 +1,13 @@
+{
+  "name": "AI Stock Analyzer",
+  "slug": "ai-stock-analyzer",
+  "componentName": "AIStockAnalyzer",
+  "description": "Next-generation AI stock analysis platform with dark theme and modern interface. Features real-time market data, AI-powered insights, and instant diagnostics.",
+  "version": "1.0.0",
+  "category": "Finance",
+  "templateCategory": "input-form",
+  "tags": ["stock", "ai", "finance", "dark-theme", "analytics", "conversion"],
+  "author": "Template System",
+  "thumbnail": "",
+  "previewImages": []
+}

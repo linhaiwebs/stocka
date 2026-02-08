@@ -1,0 +1,13 @@
+{
+  "name": "AI Stock USA",
+  "slug": "ai-stock-usa",
+  "componentName": "AIStockUSA",
+  "description": "Premium AI stock analysis landing page for US markets with advanced scanning, WhatsApp integration, and comprehensive legal compliance. Features dark futuristic design with brain visualization.",
+  "version": "1.0.0",
+  "category": "Finance",
+  "templateCategory": "input-form",
+  "tags": ["stock", "ai", "usa", "finance", "whatsapp", "conversion", "premium"],
+  "author": "Template System",
+  "thumbnail": "",
+  "previewImages": []
+}

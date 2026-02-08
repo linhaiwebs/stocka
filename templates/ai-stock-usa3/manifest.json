@@ -1,0 +1,10 @@
+{
+  "name": "AI Stock Intelligence 3",
+  "slug": "ai-stock-usa3",
+  "componentName": "AIStockUSA3",
+  "description": "Advanced intelligence-driven stock analysis platform with predictive analytics and real-time market intelligence for US markets",
+  "version": "1.0.0",
+  "category": "stock-analysis",
+  "templateCategory": "input-form",
+  "tags": ["stock", "analysis", "market", "intelligence", "trading", "usa"]
+}

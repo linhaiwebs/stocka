@@ -1,0 +1,13 @@
+{
+  "name": "日本通版",
+  "slug": "jp-stock-ai",
+  "componentName": "JPStockAI",
+  "description": "日本無料株 - 日本株式教育向けランディングページ（投資助言なし）",
+  "version": "1.0.0",
+  "category": "日本無料株",
+  "templateCategory": "standard",
+  "tags": ["japan", "stock", "education", "ai", "無料株"],
+  "author": "Template System",
+  "thumbnail": "",
+  "previewImages": []
+}

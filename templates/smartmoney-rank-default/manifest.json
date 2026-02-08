@@ -1,0 +1,12 @@
+{
+  "name": "SmartMoney Rank - Default",
+  "slug": "smartmoney-rank-default",
+  "componentName": "SmartMoneyRankDefault",
+  "description": "Premium investor tracking dashboard with real-time rankings and comprehensive analytics",
+  "version": "1.0.0",
+  "category": "investor-tracking",
+  "templateCategory": "standard",
+  "isDefault": true,
+  "tags": ["investor", "tracking", "analytics", "dashboard", "finance"],
+  "author": "Template System"
+}

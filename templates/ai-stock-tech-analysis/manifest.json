@@ -1,0 +1,13 @@
+{
+  "name": "AI Stock Technical Analysis",
+  "slug": "ai-stock-tech-analysis",
+  "componentName": "AIStockTechAnalysis",
+  "description": "Technical analysis information platform with comprehensive indicator data. Features complete legal disclaimers and risk warnings for Google Ads policy compliance.",
+  "version": "1.0.0",
+  "category": "Finance",
+  "templateCategory": "input-form",
+  "tags": ["stock", "ai", "finance", "technical-analysis", "indicators", "compliance", "information"],
+  "author": "Template System",
+  "thumbnail": "",
+  "previewImages": []
+}
